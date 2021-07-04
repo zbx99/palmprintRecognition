@@ -31,7 +31,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //动态获取相机权限并启动相机
-                getCameraPermission();
+                // getCameraPermission();
+                // 跳转相机预览页面
+                Intent intent =new Intent(MainActivity.this,CameraShow.class);
+                //启动
+                startActivity(intent);
                 //进行识别
             }
         });
@@ -40,7 +44,11 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //动态获取相机权限并启动相机
-                getCameraPermission();
+                // getCameraPermission();
+                // 跳转相机预览页面
+                Intent intent =new Intent(MainActivity.this,CameraShow.class);
+                //启动
+                startActivity(intent);
                 //保存特征信息？？？
             }
         });
