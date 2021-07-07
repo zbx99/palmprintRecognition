@@ -6,9 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".CameraShow">
 
-    <com.example.palmprintrecognition.AutoFitTextureView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:id="@+id/cameraView"></com.example.palmprintrecognition.AutoFitTextureView>
+        android:layout_height="match_parent">
+        <com.example.palmprintrecognition.AutoFitTextureView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:id="@+id/cameraView">
+        </com.example.palmprintrecognition.AutoFitTextureView>
+        <ImageView
+            android:id="@+id/scanHorizontalLineImageView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:src="@drawable/scanline" />
+        <Button
+            android:id="@+id/takePicture"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="18dp"
+            android:text="拍照" />
+    </RelativeLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

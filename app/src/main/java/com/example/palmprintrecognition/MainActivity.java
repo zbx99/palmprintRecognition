@@ -60,7 +60,7 @@ public class MainActivity extends AppCompatActivity {
             int permission = ContextCompat.checkSelfPermission(getActivity().getApplicationContext(), Manifest.permission.CAMERA);
             if (permission == PackageManager.PERMISSION_GRANTED) {
                 //如果有了相机的权限就调用相机
-                startCamera();
+                // startCamera();
             } else {
                 AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
                 builder.setTitle("提示");
@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity {
             }
         } else {
             //不是6.0以上版本直接调用相机
-            startCamera();
+            // startCamera();
         }
 
     }
