@@ -32,11 +32,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //动态获取相机权限并启动相机
                 // getCameraPermission();
+                //用Bundle携带数据
+                Bundle bundle=new Bundle();
+                //传递name参数为tinyphp
+                bundle.putString("name", "login");
                 // 跳转相机预览页面
                 Intent intent =new Intent(MainActivity.this,CameraShow.class);
+                intent.putExtras(bundle);
                 //启动
                 startActivity(intent);
-                //进行识别
             }
         });
         Button registerButton=(Button) this.findViewById(R.id.register);
@@ -45,11 +49,15 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
                 //动态获取相机权限并启动相机
                 // getCameraPermission();
+                //用Bundle携带数据
+                Bundle bundle=new Bundle();
+                //传递name参数为tinyphp
+                bundle.putString("name", "register");
                 // 跳转相机预览页面
                 Intent intent =new Intent(MainActivity.this,CameraShow.class);
+                intent.putExtras(bundle);
                 //启动
                 startActivity(intent);
-                //保存特征信息？？？
             }
         });
     }

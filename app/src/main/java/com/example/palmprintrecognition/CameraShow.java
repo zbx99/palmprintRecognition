@@ -90,6 +90,8 @@ public class CameraShow extends AppCompatActivity {
 
     private Context context;
 
+    private String from;
+
     // Surface状态回调
     TextureView.SurfaceTextureListener textureListener = new TextureView.SurfaceTextureListener() {
         @Override
@@ -159,6 +161,13 @@ public class CameraShow extends AppCompatActivity {
 
         getInternetPermission();
 
+        //新页面接收数据
+        Bundle bundle = this.getIntent().getExtras();
+        //接收name值
+        String name = bundle.getString("name");
+
+        from = name;
+
         textureView = findViewById(R.id.cameraView);
         textureView.setSurfaceTextureListener(textureListener);
 
@@ -196,6 +205,7 @@ public class CameraShow extends AppCompatActivity {
         int top = mPreviewView.getTop();
         int bottom = mPreviewView.getBottom();
 
+        System.out.println("这是扫一扫动画");
         System.out.println(top);
         System.out.println(bottom);
 
@@ -207,6 +217,7 @@ public class CameraShow extends AppCompatActivity {
         // 播放动画
         mScanHorizontalLineImageView.setAnimation(verticalAnimation);
         verticalAnimation.startNow();
+        System.out.println("这是扫一扫动画2");
     }
 
     private void setupCamera(int width, int height) {
@@ -340,7 +351,7 @@ public class CameraShow extends AppCompatActivity {
                 Log.i(TAG, "Image Available!");
                 Image image = reader.acquireLatestImage();
                 // 开启线程异步保存图片
-                new Thread(new ImageSaver(image,context)).start();
+                new Thread(new ImageSaver(image,context,from)).start();
             }
         }, null);
     }
@@ -423,10 +434,12 @@ public class CameraShow extends AppCompatActivity {
     public static class ImageSaver implements Runnable {
         private Image mImage;
         private Context context;
+        private String from;
 
-        public ImageSaver(Image image,Context context1) {
+        public ImageSaver(Image image,Context context1,String from1) {
             mImage = image;
             context = context1;
+            from = from1;
         }
 
         @Override
@@ -448,13 +461,14 @@ public class CameraShow extends AppCompatActivity {
                 if (fos != null) {
                     try {
                         fos.close();
+                        mImage.close();
                     } catch (IOException e) {
                         e.printStackTrace();
                     }
                 }
 
                 try {
-                    ImageUpload.run(imageFile,context);
+                    ImageUpload.run(imageFile,context,from);
                 } catch (Exception e) {
                     e.printStackTrace();
                 }
